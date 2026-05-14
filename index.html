@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal writing and project portfolio covering geopolitics, AI projects, cybersecurity labs, and technical research." />
+  <meta name="author" content="Your Name" />
+  <title>Your Name | Geopolitics, AI & Cybersecurity</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #111936;
+      --panel-2: #172143;
+      --text: #eef3ff;
+      --muted: #aab7d9;
+      --accent: #7dd3fc;
+      --accent-2: #c4b5fd;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1120px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(125, 211, 252, 0.18), transparent 34rem),
+        radial-gradient(circle at 80% 10%, rgba(196, 181, 253, 0.16), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      background: var(--text);
+      color: var(--bg);
+      padding: 8px 12px;
+      border-radius: 10px;
+      z-index: 99;
+    }
+
+    .skip-link:focus { left: 12px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(11, 16, 32, 0.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #08111f;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 96px 0 72px;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      font-size: 0.9rem;
+    }
+
+    h1, h2, h3 { line-height: 1.1; margin: 0; }
+
+    h1 {
+      margin-top: 22px;
+      max-width: 820px;
+      font-size: clamp(2.7rem, 7vw, 5.7rem);
+      letter-spacing: -0.07em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.13rem;
+      margin: 22px 0 0;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button.primary {
+      background: var(--text);
+      color: #07101f;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .terminal-card {
+      border: 1px solid var(--border);
+      background: rgba(17, 25, 54, 0.78);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--muted); opacity: 0.7; }
+
+    .terminal-body {
+      padding: 20px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #d8e5ff;
+      font-size: 0.94rem;
+    }
+
+    .terminal-body span { color: var(--accent); }
+
+    section { padding: 56px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -0.05em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(17, 25, 54, 0.72);
+      padding: 22px;
+      min-height: 100%;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .card:hover { background: rgba(23, 33, 67, 0.88); }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 0.78rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+
+    .card a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .featured {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .profile-panel {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(125, 211, 252, 0.18), rgba(196, 181, 253, 0.08));
+      padding: 28px;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+    }
+
+    .profile-panel h2 { font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -0.05em; }
+    .profile-panel p { color: var(--muted); margin-bottom: 0; }
+
+    .list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .list-item {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .list-item strong { display: block; margin-bottom: 4px; }
+    .list-item span { color: var(--muted); }
+
+    .contact {
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 10px);
+      background: linear-gradient(135deg, rgba(125, 211, 252, 0.14), rgba(196, 181, 253, 0.14));
+      padding: 44px 24px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 14px auto 0;
+    }
+
+    footer {
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .hero, .featured { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Homepage">
+        <span class="brand-mark">YN</span>
+        <span>Your Name</span>
+      </a>
+      <div class="nav-links">
+        <a href="#writing">Writing</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero container">
+      <div>
+        <span class="eyebrow">Geopolitics · AI · Cybersecurity · Research</span>
+        <h1>Field notes on <span class="gradient-text">power, technology, and security.</span></h1>
+        <p>
+          I write about geopolitical events, strategic competition, emerging technologies, and the technical projects I build while studying AI and cybersecurity.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#writing">Read latest posts</a>
+          <a class="button secondary" href="#projects">View projects</a>
+        </div>
+      </div>
+
+      <aside class="terminal-card" aria-label="Site summary">
+        <div class="terminal-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <div class="terminal-body">
+          <p><span>$</span> whoami</p>
+          <p>Analyst-builder focused on global affairs, AI systems, cyber defense, and practical security labs.</p>
+          <p><span>$</span> current_focus</p>
+          <p>Indo-Pacific security · AI governance · cyber ranges · threat modeling</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="writing" class="container">
+      <div class="section-heading">
+        <h2>Latest writing</h2>
+        <p>Replace these cards with your own posts. For a simple site, each post can be another HTML file under /posts.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="tag-row">
+            <span class="tag">Geopolitics</span>
+            <span class="tag">Analysis</span>
+          </div>
+          <h3>What a shifting alliance network means for regional security</h3>
+          <p>A concise analysis of how defense partnerships, economic pressure, and diplomatic signaling reshape regional risk.</p>
+          <a href="#">Read essay →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag-row">
+            <span class="tag">AI</span>
+            <span class="tag">Policy</span>
+          </div>
+          <h3>AI systems as instruments of state capacity</h3>
+          <p>Notes on how governments may use AI to improve intelligence, logistics, public services, and strategic influence.</p>
+          <a href="#">Read essay →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag-row">
+            <span class="tag">Cyber</span>
+            <span class="tag">Risk</span>
+          </div>
+          <h3>Cyber escalation: why attribution still matters</h3>
+          <p>A practical look at deterrence, miscalculation, and the limits of technical evidence in cyber conflict.</p>
+          <a href="#">Read essay →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="container">
+      <div class="section-heading">
+        <h2>Selected projects</h2>
+        <p>Use these cards for AI projects, cybersecurity labs, dashboards, research tools, or writeups.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="tag-row">
+            <span class="tag">AI</span>
+            <span class="tag">Python</span>
+          </div>
+          <h3>OSINT summarization assistant</h3>
+          <p>A prototype that ingests public reports, extracts entities, and creates structured geopolitical briefings.</p>
+          <a href="#">View project →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag-row">
+            <span class="tag">Cyber Lab</span>
+            <span class="tag">Detection</span>
+          </div>
+          <h3>SIEM detection lab</h3>
+          <p>A home lab for log collection, alert rules, suspicious authentication patterns, and incident notes.</p>
+          <a href="#">View writeup →</a>
+        </article>
+
+        <article class="card">
+          <div class="tag-row">
+            <span class="tag">Research</span>
+            <span class="tag">Data</span>
+          </div>
+          <h3>Conflict event tracker</h3>
+          <p>A small dashboard concept for tracking major incidents, actors, regions, and source reliability.</p>
+          <a href="#">View project →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="container">
+      <div class="featured">
+        <div class="profile-panel">
+          <h2>About this site</h2>
+          <p>
+            This is a public notebook and portfolio for analysis, technical experiments, and lessons learned from building practical security and AI projects.
+          </p>
+        </div>
+
+        <div class="list">
+          <div class="list-item">
+            <strong>Research interests</strong>
+            <span>Strategic competition, international security, cyber operations, AI governance, and national resilience.</span>
+          </div>
+          <div class="list-item">
+            <strong>Technical stack</strong>
+            <span>Static HTML/CSS, optional Markdown pipeline later, Git-based deployment, CDN hosting, strict security headers.</span>
+          </div>
+          <div class="list-item">
+            <strong>Publishing model</strong>
+            <span>Start with static posts. Add a headless CMS only if manual HTML editing becomes annoying.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <div class="contact">
+        <h2>Contact</h2>
+        <p>Replace these links with your real GitHub, LinkedIn, email, or resume.</p>
+        <div class="actions" style="justify-content: center;">
+          <a class="button primary" href="mailto:you@example.com">Email me</a>
+          <a class="button secondary" href="https://github.com/yourusername" rel="noopener noreferrer">GitHub</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/yourusername" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Your Name. All rights reserved.</span>
+      <span>Built as a secure static site.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
